@@ -1,0 +1,56 @@
+(1)  Group by category and sum the total revenue
+db.TransColl.aggregate([{ $group: { _id: "$category", totalRevenue: { $sum: { $multiply: ["$price", "$quantity"] } } } }])
+
+output
+[
+  { _id: 'Books', totalRevenue: 3877129.92 },
+  { _id: 'Sports', totalRevenue: 3861426.8 },
+  { _id: 'Apparel', totalRevenue: 3820153.71 },
+  { _id: 'Home', totalRevenue: 4138419.78 },
+  { _id: 'Beauty', totalRevenue: 3855789.87 },
+  { _id: 'Toys', totalRevenue: 3943594.82 },
+  { _id: 'Electronics', totalRevenue: 3927192.83 }
+]
+
+(2) Count the number of transactions per category
+db.TransColl.aggregate([{ $group: { _id: "$category", transactionCount: { $sum: 1 } } }])
+
+output
+[
+  { _id: 'Books', transactionCount: 1410 },
+  { _id: 'Sports', transactionCount: 1419 },
+  { _id: 'Apparel', transactionCount: 1371 },
+  { _id: 'Home', transactionCount: 1488 },
+  { _id: 'Beauty', transactionCount: 1442 },
+  { _id: 'Toys', transactionCount: 1440 },
+  { _id: 'Electronics', transactionCount: 1430 }
+]
+
+(3) Find the average price of products in each category
+db.TransColl.aggregate([{ $group: { _id: "$category", averagePrice: { $avg: "$price" } } }])
+
+output
+[
+  { _id: 'Books', averagePrice: 497.75641134751777 },
+  { _id: 'Sports', averagePrice: 494.4717970401691 },
+  { _id: 'Apparel', averagePrice: 504.9126331145149 },
+  { _id: 'Home', averagePrice: 506.6525739247312 },
+  { _id: 'Beauty', averagePrice: 502.9669417475728 },
+  { _id: 'Toys', averagePrice: 497.8162361111111 },
+  { _id: 'Electronics', averagePrice: 503.42067132867135 }
+]
+
+(4) Get the distinct categories available
+db.TransColl.distinct("category")
+
+output
+[
+  'Apparel',
+  'Beauty',
+  'Books',
+  'Electronics',
+  'Home',
+  'Sports',
+  'Toys'
+]
+

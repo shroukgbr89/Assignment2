@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="hadoop-mapreduce-client-core-3.3.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libraries/hadoop-mapreduce-client-core-3.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

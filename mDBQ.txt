@@ -1,0 +1,7 @@
+db.TransColl.createIndex({ category: 1 })
+
+#first quary
+db.TransColl.aggregate([{ $group: { _id: "$category", totalPurchases: { $sum: "$quantity" } } }, { $sort: { totalPurchases: -1 } }, { $limit: 5 }])
+
+#second quary
+db.TransColl.find({ $and: [{ quantity: { $gt: 2 } }, { price: { $gt: 100 } }] })
